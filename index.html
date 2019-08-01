@@ -9,6 +9,9 @@
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <!-- Firebase Reference -->
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
 </head>
 
 <body>
@@ -18,6 +21,38 @@
             <p class="lead">Choo. Choo. Chee. Chee.</p>
         </div>
     </div>
+<!-- Input form to add another train -->
+    <div class="row">
+        <div class="col-lg-12">
+          <div class="card card-default">
+            <div class="card-header">
+              Add Train
+            </div>
+            <div class="card-body">
+              <form>
+                <div class="form-group row">
+                  <label for="train-name">Train Name</label>
+                  <input class="form-control" id="train-name" type="text">
+                </div>
+                <div class="form-group row">
+                  <label for="destination">Destination</label>
+                  <input class="form-control" id="destination" type="number">
+                </div>
+                <div class="form-group row">
+                    <label for="train-time">First Train Time(HH:mm - military time)</label>
+                    <input class="form-control" id="train-time" type="number">
+                  </div>
+                  <div class="form-group row">
+                    <label for="how-often">Frequency (min)</label>
+                    <input class="form-control" id="how-often" type="number">
+                  </div>
+                <button class="btn btn-primary" id="submit-train" type="submit">Submit</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
     <script>
 
     </script>
