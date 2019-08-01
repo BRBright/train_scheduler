@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
 </head>
@@ -63,7 +66,7 @@
                         </div>
                         <div class="form-group row">
                             <label for="destination">Destination</label>
-                            <input class="form-control" id="destination" type="number">
+                            <input class="form-control" id="destination" type="text">
                         </div>
                         <div class="form-group row">
                             <label for="train-time">First Train Time(HH:mm - military time)</label>
@@ -81,7 +84,67 @@
     </div>
     </div>
     <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyBAn--Z7VTKktSU5B48o88Zn8bF95xGVVg",
+            authDomain: "billy-schoolwork.firebaseapp.com",
+            databaseURL: "https://billy-schoolwork.firebaseio.com",
+            projectId: "billy-schoolwork",
+            storageBucket: "",
+            messagingSenderId: "477232336580",
+            appId: "1:477232336580:web:abefb2fee10cc729"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // Assign the reference to the database to a variable named 'database'
+        var database = firebase.database();
 
+        // Capture Button Click
+        $("#submit-train").on("click", function (event) {
+            event.preventDefault();
+
+            // Capture User Inputs and store them into variables
+            var train_name = $("#train-name").val().trim();
+            var destination = $("#destination").val().trim();
+            var first_train_time = $("#train-time").val().trim();
+            var frequency = $("#how-often").val().trim();
+
+
+            // Console log each of the user inputs to confirm we are receiving them correctly
+            console.log(train_name);
+            console.log(destination);
+            console.log(first_train_time);
+            console.log(frequency)
+
+            /*   // Output all of the new information into the relevant HTML sections
+               $("#").text(train_name);
+               $("#").text(destination);
+               $("#").text(first_train_time);
+               $("#").text(frequency);
+   
+               //This is the same as all of the lines above in one line.
+               //$('#name-display').text($("#name-input").val());
+   
+               // Stores the information locally
+               sessionStorage.setItem("train_name", name);
+               sessionStorage.setItem("destination", destination);
+               sessionStorage.setItem("first_train_time", firts_time);
+               sessionStorage.setItem("frequency", how_often);
+   
+               // gets data from local Storage
+               $("#").text(sessionStorage.getItem("name"));
+               $("#").text(sessionStorage.getItem("destination"));
+               $("#").text(sessionStorage.getItem("first_time"));
+               $("#").text(sessionStorage.getItem("how_often"));
+   */
+        });
+/*
+                // Keeps stored data on page after refresh
+                $("#").text(sessionStorage.getItem("name"));
+                $("#").text(sessionStorage.getItem("destination"));
+                $("#").text(sessionStorage.getItem("first_time"));
+                $("#").text(sessionStorage.getItem("how_often"));
+        */
     </script>
 
 </body>
