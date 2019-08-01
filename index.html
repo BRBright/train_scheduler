@@ -42,7 +42,7 @@
                                 <th scope="col">Minutes Away</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="schedule">
                         </tbody>
                     </table>
                 </div>
@@ -116,35 +116,16 @@
             console.log(first_train_time);
             console.log(frequency)
 
-            /*   // Output all of the new information into the relevant HTML sections
-               $("#").text(train_name);
-               $("#").text(destination);
-               $("#").text(first_train_time);
-               $("#").text(frequency);
-   
-               //This is the same as all of the lines above in one line.
-               //$('#name-display').text($("#name-input").val());
-   
-               // Stores the information locally
-               sessionStorage.setItem("train_name", name);
-               sessionStorage.setItem("destination", destination);
-               sessionStorage.setItem("first_train_time", firts_time);
-               sessionStorage.setItem("frequency", how_often);
-   
-               // gets data from local Storage
-               $("#").text(sessionStorage.getItem("name"));
-               $("#").text(sessionStorage.getItem("destination"));
-               $("#").text(sessionStorage.getItem("first_time"));
-               $("#").text(sessionStorage.getItem("how_often"));
-   */
+            // full list of items to the well
+      $("#schedule").append("<tr><td scope='row'> " +
+        train_name +
+        " </td><td scope='row'> " + destination +
+        " </td><td scope='row'> " + first_train_time +
+        " </td><td scope='row'> " + frequency +
+        " </td></tr>");
+
         });
-/*
-                // Keeps stored data on page after refresh
-                $("#").text(sessionStorage.getItem("name"));
-                $("#").text(sessionStorage.getItem("destination"));
-                $("#").text(sessionStorage.getItem("first_time"));
-                $("#").text(sessionStorage.getItem("how_often"));
-        */
+
     </script>
 
 </body>
