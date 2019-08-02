@@ -123,7 +123,7 @@
             console.log("DIFFERENCE IN TIME: " + diff_time);
 
             var time_remaining = diff_time % frequency;
-            console.log(tRemainder);
+            console.log(time_remaining);
 
             var min_away = frequency - time_remaining;
             console.log("MINUTES TILL TRAIN: " + min_away);
@@ -140,6 +140,26 @@
                 " </td><td scope='row'> " + min_away +
                 " </td></tr>");
 
+            database.ref().set({
+                name: train_name,
+                destination: destination,
+                how_often: frequency,
+                nextArrival: time,
+                minAway: min_away
+            });
+        });
+
+        database.ref().on("value", function (snapshot) {
+            console.log(snapshot.val());
+
+            train_name = snapshot.val().name;
+            destination = snapshot.val().destination;
+            frequency = snapshot.val().how_often;
+            time = snapshot.val().nextArrival;
+            min_away = snapshot.val().minAway;
+
+        }, function (errorObject) {
+            console.log("The read failed: " + errorObject.code);
         });
 
     </script>
