@@ -12,9 +12,10 @@
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
-
     <!-- Firebase Reference -->
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+    <!-- Added Moment JS -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
 </head>
 
 <body>
@@ -99,9 +100,15 @@
         // Assign the reference to the database to a variable named 'database'
         var database = firebase.database();
 
+        // Current Time
+        var currentTime = moment();
+        console.log("CURRENT TIME: " + moment(currentTime).format("hh:mm"));
+
         // Capture Button Click
         $("#submit-train").on("click", function (event) {
             event.preventDefault();
+
+            var firstTime = "03:30"
 
             // Capture User Inputs and store them into variables
             var train_name = $("#train-name").val().trim();
@@ -109,20 +116,29 @@
             var first_train_time = $("#train-time").val().trim();
             var frequency = $("#how-often").val().trim();
 
+            var converted_time = moment(firstTime, "HH:mm").subtract(1, "years");
+            console.log(converted_time);
 
-            // Console log each of the user inputs to confirm we are receiving them correctly
-            console.log(train_name);
-            console.log(destination);
-            console.log(first_train_time);
-            console.log(frequency)
+            var diff_time = moment().diff(moment(converted_time), "minutes");
+            console.log("DIFFERENCE IN TIME: " + diff_time);
+
+            var time_remaining = diff_time % frequency;
+            console.log(tRemainder);
+
+            var min_away = frequency - time_remaining;
+            console.log("MINUTES TILL TRAIN: " + min_away);
+
+            var time = moment().add(min_away, "minutes");
+            console.log("ARRIVAL TIME: " + moment(time).format("hh:mm"));
 
             // full list of items to the well
-      $("#schedule").append("<tr><td scope='row'> " +
-        train_name +
-        " </td><td scope='row'> " + destination +
-        " </td><td scope='row'> " + first_train_time +
-        " </td><td scope='row'> " + frequency +
-        " </td></tr>");
+            $("#schedule").append("<tr><td scope='row'> " +
+                train_name +
+                " </td><td scope='row'> " + destination +
+                " </td><td scope='row'> " + frequency +
+                " </td><td scope='row'> " + moment(time).format("hh:mm") +
+                " </td><td scope='row'> " + min_away +
+                " </td></tr>");
 
         });
 
